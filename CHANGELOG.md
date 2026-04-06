@@ -26,4 +26,4 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and
 - Conditional compilation: `#if canImport(FoundationModels)` for Apple Intelligence features, `#if os(macOS)` for stdio/subprocess support
 - 16 unit tests covering schema conversion and result conversion
 
-[1.0.0]: https://github.com/YOUR_USERNAME/SwiftMCP/releases/tag/1.0.0
+[1.0.0]: https://github.com/sutheesh/SwiftMCP/releases/tag/1.0.0

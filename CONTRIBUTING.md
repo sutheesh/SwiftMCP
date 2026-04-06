@@ -17,7 +17,7 @@ SwiftMCP bridges Apple's Foundation Models framework (iOS 26 on-device AI) with 
 ### Setting Up
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/SwiftMCP.git
+git clone https://github.com/sutheesh/SwiftMCP.git
 cd SwiftMCP
 DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift build
 DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift test

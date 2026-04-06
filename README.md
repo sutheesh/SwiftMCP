@@ -6,7 +6,7 @@
 [![Platforms](https://img.shields.io/badge/Platforms-iOS%2018%20%7C%20macOS%2015-blue.svg)](https://developer.apple.com)
 [![Foundation Models](https://img.shields.io/badge/Foundation%20Models-iOS%2026%20%7C%20macOS%2026-purple.svg)](https://developer.apple.com/documentation/foundationmodels)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![CI](https://github.com/YOUR_USERNAME/SwiftMCP/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/SwiftMCP/actions/workflows/ci.yml)
+[![CI](https://github.com/sutheesh/SwiftMCP/actions/workflows/ci.yml/badge.svg)](https://github.com/sutheesh/SwiftMCP/actions/workflows/ci.yml)
 
 ---
 
@@ -66,7 +66,7 @@ Add SwiftMCP to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/YOUR_USERNAME/SwiftMCP", from: "1.0.0"),
+    .package(url: "https://github.com/sutheesh/SwiftMCP", from: "1.0.0"),
 ],
 targets: [
     .target(
