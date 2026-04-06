@@ -70,7 +70,7 @@ dependencies: [
 ],
 targets: [
     .target(
-        name: "YourTarget",
+        name: "SwiftMCP",
         dependencies: ["SwiftMCP"]
     ),
 ]
