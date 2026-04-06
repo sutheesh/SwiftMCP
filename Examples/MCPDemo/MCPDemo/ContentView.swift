@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var viewModel = MCPViewModel()
-    @State private var serverURL = "https://your-mcp-server.example.com/mcp"
+    @State private var serverURL = MCPServer.default
 
     var body: some View {
         NavigationStack {

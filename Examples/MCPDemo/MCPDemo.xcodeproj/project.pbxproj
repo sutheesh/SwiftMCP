@@ -11,14 +11,16 @@
 		FCCC4E2EFAD34430A204B10A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70BA9304A7D4195B956A20F /* ContentView.swift */; };
 		090FCFB41EBB44C39291D9F4 /* MCPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F00478F47394C218BE9D0AF /* MCPViewModel.swift */; };
 		0F36FD394EE947159BE61EBF /* SwiftMCP in Frameworks */ = {isa = PBXBuildFile; productRef = 1332D20020FB4E9081A971B5 /* SwiftMCP */; };
-/* End PBXBuildFile section */
+		DB005F1C237C468E92599255 /* MCPServerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192CDCA002E74C1FA66C234D /* MCPServerConstants.swift */; };
+	/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		45DCB659EB14488CA189F8EB /* MCPDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MCPDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E4F7F98AEB642A2A38D885E /* MCPDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPDemoApp.swift; sourceTree = "<group>"; };
 		C70BA9304A7D4195B956A20F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3F00478F47394C218BE9D0AF /* MCPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPViewModel.swift; sourceTree = "<group>"; };
-/* End PBXFileReference section */
+		192CDCA002E74C1FA66C234D /* MCPServerConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPServerConstants.swift; sourceTree = "<group>"; };
+	/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8EB475627B41468EB02B3518 /* Frameworks */ = {
@@ -54,6 +56,7 @@
 				7E4F7F98AEB642A2A38D885E /* MCPDemoApp.swift */,
 				C70BA9304A7D4195B956A20F /* ContentView.swift */,
 				3F00478F47394C218BE9D0AF /* MCPViewModel.swift */,
+				192CDCA002E74C1FA66C234D /* MCPServerConstants.swift */,
 			);
 			path = MCPDemo;
 			sourceTree = "<group>";
@@ -135,6 +138,7 @@
 				22855608A20B4189B2AD0608 /* MCPDemoApp.swift in Sources */,
 				FCCC4E2EFAD34430A204B10A /* ContentView.swift in Sources */,
 				090FCFB41EBB44C39291D9F4 /* MCPViewModel.swift in Sources */,
+				DB005F1C237C468E92599255 /* MCPServerConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
