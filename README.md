@@ -211,6 +211,10 @@ When the model calls a tool:
 3. The JSON is forwarded to the MCP server via `client.callTool(...)`
 4. The MCP response is returned to the model as a `String`
 
+### Novel Contribution
+
+To our knowledge, SwiftMCP is the **first open-source implementation of runtime MCP tool bridging for Apple's on-device Foundation Models**. Prior work either required compile-time `@Generable` macros (which cannot wrap runtime-discovered tools) or operated outside the Apple on-device stack entirely. The `DynamicGenerationSchema` approach — converting MCP JSON Schema to a `GenerationSchema` at runtime with no macros — is the core technique that makes this possible, and `SchemaConverter` is its reference implementation. This work accompanies the MobileMCP research paper and is intended as a reproducible artifact for the community.
+
 ---
 
 ## Architecture
