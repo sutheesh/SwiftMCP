@@ -28,25 +28,23 @@ jobs:
         run: echo "VERSION=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
 
       - name: Generate release notes
-        id: notes
         run: |
+          VERSION="${{ steps.version.outputs.VERSION }}"
           PREV_TAG=$(git tag --sort=-v:refname | grep -E '^[0-9]+\.[0-9]+\.[0-9]+' | sed -n '2p')
           {
-            echo "NOTES<<EOF"
             echo "## What's Changed"
             echo ""
             git log "${PREV_TAG:+${PREV_TAG}..}HEAD" --pretty=format:"- %s (%h)" --no-merges
             echo ""
             echo ""
-            echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/${PREV_TAG:-initial}...${{ steps.version.outputs.VERSION }}"
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
+            echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/${PREV_TAG:-initial}...${VERSION}"
+          } > release_notes.md
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.VERSION }}
           name: SwiftMCP ${{ steps.version.outputs.VERSION }}
-          body: ${{ steps.notes.outputs.NOTES }}
+          body_path: release_notes.md
           draft: false
           prerelease: ${{ contains(steps.version.outputs.VERSION, '-') }}
