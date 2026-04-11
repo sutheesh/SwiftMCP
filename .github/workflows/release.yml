@@ -9,36 +9,32 @@ permissions:
   contents: write
 
 jobs:
-  # Reuse the existing CI workflow — no duplication
   ci:
     uses: ./.github/workflows/ci.yml
 
-  # Only runs after CI passes
   release:
     name: Publish Release
     needs: ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Extract version
         id: version
         run: echo "VERSION=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
 
-      - name: Generate release notes
+      - name: Extract changelog for this version
         id: notes
         run: |
-          PREV_TAG=$(git tag --sort=-v:refname | grep -E '^[0-9]+\.[0-9]+\.[0-9]+' | sed -n '2p')
+          VERSION="${GITHUB_REF_NAME}"
+
+          # Extract the section between ## [VERSION] and the next ## [
+          # Works with both "## [1.1.0]" and "## [1.1.0] - 2026-04-11" formats
           {
             echo "NOTES<<EOF"
-            echo "## What's Changed"
+            sed -n "/^## \[${VERSION}\]/,/^## \[/p" CHANGELOG.md | sed '$d'
             echo ""
-            git log "${PREV_TAG:+${PREV_TAG}..}HEAD" --pretty=format:"- %s (%h)" --no-merges
-            echo ""
-            echo ""
-            echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/${PREV_TAG:-initial}...${{ steps.version.outputs.VERSION }}"
+            echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/$(git tag --sort=-v:refname | sed -n '2p')...$VERSION"
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
 
