@@ -2,16 +2,27 @@ import MCP
 
 /// Converts MCP `Tool.Content` blocks into a plain `String` result.
 ///
-/// The bridge uses `String` as `MCPDynamicTool.Output` since `String` conforms
-/// to `PromptRepresentable` — no `ToolOutput` wrapper type is needed.
+/// `String` is used as `MCPDynamicTool.Output` because it conforms to
+/// `PromptRepresentable`, which lets Foundation Models include the result
+/// directly in the conversation context.
+///
+/// ## Content Block Mapping
+///
+/// | MCP Content Type | String Output |
+/// |---|---|
+/// | `.text` | The text verbatim |
+/// | `.image` | `[image:<mimeType>]` placeholder |
+/// | `.audio` | `[audio:<mimeType>]` placeholder |
+/// | `.resource` | Embedded text, or `[resource:<uri>]` fallback |
+/// | `.resourceLink` | `[resource:<name> <uri>]` |
 public enum ResultConverter {
 
     /// Returns the text representation of MCP content blocks.
     ///
-    /// - Text blocks are concatenated in order.
-    /// - Image/audio blocks produce a MIME-type placeholder.
-    /// - Resource blocks use embedded text, or the URI as a fallback.
-    /// - If `isError` is true, the result is prefixed with `[error] `.
+    /// - Parameters:
+    ///   - content: One or more MCP tool content blocks.
+    ///   - isError: When `true`, the result is prefixed with `[error] `.
+    /// - Returns: A single string suitable for use as `LanguageModelSession` tool output.
     public static func string(
         from content: [MCP.Tool.Content],
         isError: Bool?
@@ -19,6 +30,15 @@ public enum ResultConverter {
         guard !content.isEmpty else { return "(no content)" }
         let body = content.map { textRepresentation(of: $0) }.joined(separator: "\n")
         return isError == true ? "[error] \(body)" : body
+    }
+
+    /// Returns a graceful error string when an MCP tool call fails at the
+    /// transport or server level.
+    ///
+    /// Used by `MCPDynamicTool.call(arguments:)` to keep the
+    /// `LanguageModelSession` running rather than throwing.
+    static func toolCallError(tool: String, error: Error) -> String {
+        "[error] Tool '\(tool)' failed: \(error.localizedDescription)"
     }
 
     // MARK: - Private
