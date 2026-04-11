@@ -52,8 +52,8 @@ if ! grep -q "\[$VERSION\]" CHANGELOG.md; then
 fi
 
 echo "── Local build & test ─────────────────────────────"
-swift build 2>&1 | tail -3
-swift test 2>&1 | tail -5
+DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift build 2>&1 | tail -3
+DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift test 2>&1 | tail -5
 
 echo "── Merging develop → main ─────────────────────────"
 git checkout main
